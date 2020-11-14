@@ -19,13 +19,14 @@ export class UserService {
    */
   async findOne(username: string): Promise<any | undefined> {
     const sql = `
-    SELECT 
-      user_id id,real_name realName,role
+    SELECT
+      user_id id, account_name username, real_name realName, passwd password,
+      passwd_salt salt, mobile, role
     FROM
       admin_user
     WHERE
       account_name = '${username}'
-    `;
+  `; // 一段平淡无奇的 SQL 查询语句
     try {
       const user = (
         await sequelize.query(sql, {
@@ -41,10 +42,10 @@ export class UserService {
       return void 0;
     }
   }
-/**
- * 注册用户
- * @param requestBody 请求体
- */
+  /**
+   * 注册用户
+   * @param requestBody 请求体
+   */
   async register(requestBody: requestBody): Promise<any> {
     const { accountName, realName, password, repassword, mobile } = requestBody;
     if (password !== repassword) {

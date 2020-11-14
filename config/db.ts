@@ -14,7 +14,7 @@ const localConfig = {
     port: 3306,
     host: '127.0.0.1',
     user: 'root',
-    password: '12345678',
+    password: '123456',
     database: 'nest_zero_to_one',
     connectionLimit: 10,
   },
